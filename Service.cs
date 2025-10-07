@@ -27,7 +27,7 @@ namespace Bayazitov_Autoservice
         public string DurationInSeconds { get; set; }
         public decimal Cost { get; set; }
         public double Discount { get; set; }
-        public int DiscountIt
+        public int DiscountIt 
         {
             get
             {
