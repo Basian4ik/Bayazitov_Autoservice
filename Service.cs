@@ -33,6 +33,10 @@ namespace Bayazitov_Autoservice
             {
                 return (int) (Discount * 100);
             }
+            set
+            {
+                Discount = value / 100.0;
+            }
 
             
         }
