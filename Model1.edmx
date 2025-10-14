@@ -98,7 +98,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="MainImagePath" Type="nvarchar" MaxLength="1000" />
-          <Property Name="DurationInSeconds" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DurationInSeconds" Type="int" Nullable="false" />
           <Property Name="Cost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Discount" Type="float" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
@@ -148,6 +148,18 @@
             </Principal>
             <Dependent Role="AttachedProduct">
               <PropertyRef Name="AttachedProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="GenderCode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -293,6 +305,10 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="AttachedProduct" EntitySet="AttachedProduct" />
           </AssociationSet>
+          <AssociationSet Name="FK_Client_Gender" Association="Self.FK_Client_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
           <AssociationSet Name="FK_ClientService_Client" Association="Self.FK_ClientService_Client">
             <End Role="Client" EntitySet="Client" />
             <End Role="ClientService" EntitySet="ClientService" />
@@ -353,6 +369,7 @@
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RegistrationDate" Type="DateTime" Precision="0" />
           <Property Name="PhotoPatch" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Client_Gender" FromRole="Client" ToRole="Gender" />
           <NavigationProperty Name="ClientService" Relationship="Self.FK_ClientService_Client" FromRole="Client" ToRole="ClientService" />
           <NavigationProperty Name="Tag" Relationship="Self.TagOfClient" FromRole="Client" ToRole="Tag" />
         </EntityType>
@@ -385,6 +402,7 @@
           </Key>
           <Property Name="Code" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Gender" FromRole="Gender" ToRole="Client" />
         </EntityType>
         <EntityType Name="Manufacturer">
           <Key>
@@ -440,7 +458,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MainImagePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="DurationInSeconds" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DurationInSeconds" Type="Int32" Nullable="false" />
           <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Discount" Type="Double" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -465,6 +483,18 @@
           <Property Name="Color" Type="String" MaxLength="6" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Client" Relationship="Self.TagOfClient" FromRole="Tag" ToRole="Client" />
         </EntityType>
+        <Association Name="FK_Client_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="GenderCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ClientService_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
           <End Role="ClientService" Type="Self.ClientService" Multiplicity="*" />
@@ -581,6 +611,10 @@
           <EntitySet Name="Service" EntityType="Self.Service" />
           <EntitySet Name="ServicePhoto" EntityType="Self.ServicePhoto" />
           <EntitySet Name="Tag" EntityType="Self.Tag" />
+          <AssociationSet Name="FK_Client_Gender" Association="Self.FK_Client_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
           <AssociationSet Name="FK_ClientService_Client" Association="Self.FK_ClientService_Client">
             <End Role="Client" EntitySet="Client" />
             <End Role="ClientService" EntitySet="ClientService" />

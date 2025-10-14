@@ -38,7 +38,7 @@ namespace Bayazitov_Autoservice
                 errors.AppendLine("Укажите стоимость услуги");
             if (_currenService.DiscountIt < 0 && _currenService.DiscountIt > 100)
                 errors.AppendLine("Укажите скидку");
-            if (string.IsNullOrWhiteSpace(_currenService.DurationInSeconds))
+            if (_currenService.DurationInSeconds <= 0)
                 errors.AppendLine("Укажите длительность услуги");
             if (errors.Length > 0)
             {

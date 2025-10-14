@@ -4,18 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5e348c61308b4a63ae00d089be53840f" Name="Diagram1">
+      <Diagram DiagramId="0d94ebedf21d4eff9e2c44f04f40a50c" Name="Diagram1">
         <EntityTypeShape EntityType="БаязитовАвтосервисModel.Client" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="БаязитовАвтосервисModel.ClientService" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="БаязитовАвтосервисModel.ClientService" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="БаязитовАвтосервисModel.DocumentByService" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="БаязитовАвтосервисModel.Gender" Width="1.5" PointX="5.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="БаязитовАвтосервисModel.Gender" Width="1.5" PointX="1.5" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="БаязитовАвтосервисModel.Manufacturer" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="БаязитовАвтосервисModel.Product" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="БаязитовАвтосервисModel.ProductPhoto" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="БаязитовАвтосервисModel.ProductSale" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="БаязитовАвтосервисModel.Service" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="БаязитовАвтосервисModel.ServicePhoto" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
-        <EntityTypeShape EntityType="БаязитовАвтосервисModel.Tag" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="БаязитовАвтосервисModel.Service" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="БаязитовАвтосервисModel.ServicePhoto" Width="1.5" PointX="3" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="БаязитовАвтосервисModel.Tag" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
+        <AssociationConnector Association="БаязитовАвтосервисModel.FK_Client_Gender" ManuallyRouted="false" />
         <AssociationConnector Association="БаязитовАвтосервисModel.FK_ClientService_Client" ManuallyRouted="false" />
         <AssociationConnector Association="БаязитовАвтосервисModel.FK_ClientService_Service" ManuallyRouted="false" />
         <AssociationConnector Association="БаязитовАвтосервисModel.FK_DocumentByService_ClientService" ManuallyRouted="false" />
