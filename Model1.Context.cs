@@ -19,7 +19,7 @@ namespace Bayazitov_Autoservice
         public static БаязитовАвтосервисEntities GetContext()
         {
             if (_context == null)
-                _context = new БаязитовАвтосервисEntities();
+                _context=new БаязитовАвтосервисEntities();
             return _context;
         }
         public БаязитовАвтосервисEntities()

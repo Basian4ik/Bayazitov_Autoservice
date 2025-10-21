@@ -36,26 +36,38 @@ namespace Bayazitov_Autoservice
                 errors.AppendLine("Укажение название услуги");
             if (_currenService.Cost == 0)
                 errors.AppendLine("Укажите стоимость услуги");
-            if (_currenService.DiscountIt < 0 && _currenService.DiscountIt > 100)
+            if (_currenService.DiscountIt < 0 || _currenService.DiscountIt > 100)
                 errors.AppendLine("Укажите скидку");
             if (_currenService.DurationInSeconds <= 0)
                 errors.AppendLine("Укажите длительность услуги");
+            if (_currenService.DurationInSeconds > 240 || _currenService.DurationInSeconds < 0)
+                errors.AppendLine("Длительность не может быть больше 240 минут или меньше 0");
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
                 return;
             }
-            if (_currenService.ID == 0)
-                БаязитовАвтосервисEntities.GetContext().Service.Add(_currenService);
-            try
+            var allServices = БаязитовАвтосервисEntities.GetContext().Service.ToList();
+            allServices=allServices.Where(p=>p.Title == _currenService.Title).ToList();
+
+            if (allServices.Count == 0)
             {
-                БаязитовАвтосервисEntities.GetContext().SaveChanges();
-                MessageBox.Show("информация сохранена");
-                Manager.MainFrame.GoBack();
+                if (_currenService.ID == 0)
+                    БаязитовАвтосервисEntities.GetContext().Service.Add(_currenService);
+                try
+                {
+                    БаязитовАвтосервисEntities.GetContext().SaveChanges();
+                    MessageBox.Show("Информация сохранена");
+                    Manager.MainFrame.GoBack();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show("Уже существует такая услуга");
             }
         }
     }
